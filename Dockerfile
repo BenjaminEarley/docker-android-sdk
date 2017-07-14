@@ -76,4 +76,6 @@ USER root
 
 RUN apt-get clean
 
+RUN mkdir -p ~/.gradle && echo "org.gradle.daemon=false" >> ~/.gradle/gradle.properties
+
 VOLUME ["/opt/android-sdk-linux"]
