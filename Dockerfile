@@ -58,6 +58,11 @@ RUN echo y | android update sdk --no-ui --all --filter android-25 | grep 'packag
 # Please keep these in descending order!
 RUN echo y | android update sdk --no-ui --all --filter build-tools-25.0.3 | grep 'package installed'
 
+
+RUN echo y | android update sdk --no-ui --all --filter extra-android-m2repository | grep 'package installed'
+RUN echo y | android update sdk --no-ui --all --filter extra-google-m2repository | grep 'package installed'
+RUN echo y | android update sdk --no-ui --all --filter extra-google-google_play_services | grep 'package installed'
+
 # Copy install tools
 # COPY tools /opt/tools
 
