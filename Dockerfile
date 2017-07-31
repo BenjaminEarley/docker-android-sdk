@@ -64,10 +64,10 @@ RUN echo y | android update sdk --no-ui --all --filter extra-google-m2repository
 RUN echo y | android update sdk --no-ui --all --filter extra-google-google_play_services | grep 'package installed'
 
 # Copy install tools
-# COPY tools /opt/tools
+COPY tools /opt/tools
 
 # Copy accepted android licenses
-# COPY licenses ${ANDROID_SDK_HOME}/licenses
+COPY licenses ${ANDROID_SDK_HOME}/licenses
 
 # Update SDK
 RUN /opt/tools/android-accept-licenses.sh android update sdk --no-ui --obsolete --force
