@@ -76,7 +76,7 @@ USER root
 
 RUN apt-get clean
 
-RUN ln -s /gitlab-shared/ ~/.gradle/
+RUN ln -s /gitlab-shared ~/.gradle
 
 RUN echo "org.gradle.daemon=false" >> ~/.gradle/gradle.properties
 
