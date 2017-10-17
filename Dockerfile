@@ -1,4 +1,4 @@
-FROM ubuntu:16.10
+FROM ubuntu:17.04
 
 
 
@@ -25,16 +25,12 @@ RUN chown 1000 /opt
 
 USER android
 ENV ANDROID_SDK_HOME /opt/android-sdk-linux
-ENV ANDROID_HOME /opt/android-sdk-linux
-
 
 RUN cd /opt && wget -q https://dl.google.com/android/android-sdk_r24.4.1-linux.tgz -O android-sdk.tgz
 RUN cd /opt && tar -xvzf android-sdk.tgz
 RUN cd /opt && rm -f android-sdk.tgz
 
-ENV PATH ${PATH}:${ANDROID_SDK_HOME}/tools:${ANDROID_SDK_HOSDK_ME}/platform-tools:/opt/tools
-ENV PATH ${PATH}:${ANDROID_HOME}/platform-tools
-ENV PATH ${PATH}:${ANDROID_HOME}/tools
+ENV PATH ${PATH}:${ANDROID_SDK_HOME}/tools:${ANDROID_SDK_HOME}/platform-tools:/opt/tools
 
 
 # ------------------------------------------------------
@@ -76,9 +72,7 @@ USER root
 
 RUN apt-get clean
 
-RUN mkdir -p /gitlab-shared
-
-RUN ln -s /gitlab-shared ~/.gradle
+RUN mkdir -p ~/.gradle
 
 RUN echo "org.gradle.daemon=false" >> ~/.gradle/gradle.properties
 
