@@ -72,6 +72,7 @@ RUN apt-get clean
 
 RUN mkdir -p ~/.gradle
 
-RUN echo "org.gradle.daemon=false" >> ~/.gradle/gradle.properties
+RUN echo "org.gradle.jvmargs=-Xmx2048M -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8\n" >> ~/.gradle/gradle.properties
+RUN echo "org.gradle.daemon=false\n" >> ~/.gradle/gradle.properties
 
 VOLUME ["/opt/android-sdk-linux"]
