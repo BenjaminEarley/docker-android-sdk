@@ -11,26 +11,23 @@ RUN apt-get update -qq
 # -> should be added to bitriseio/docker-bitrise-base
 
 # Dependencies to execute Android builds
-#RUN dpkg --add-architecture i386
-#RUN apt-get update -qq
-#RUN DEBIAN_FRONTEND=noninteractive apt-get install -y openjdk-8-jdk libc6:i386 libstdc++6:i386 libgcc1:i386 libncurses5:i386 libz1:i386
 RUN apt-get install -y openjdk-8-jdk wget expect
 
 # ------------------------------------------------------
-# --- Download Android SDK tools into $ANDROID_SDK_HOME
+# --- Download Android SDK tools into $ANDROID_HOME
 
 RUN useradd -u 1000 -M -s /bin/bash android
 RUN chown 1000 /opt
 
 
 USER android
-ENV ANDROID_SDK_HOME /opt/android-sdk-linux
+ENV ANDROID_HOME /opt/android-sdk-linux
 
 RUN cd /opt && wget -q https://dl.google.com/android/android-sdk_r24.4.1-linux.tgz -O android-sdk.tgz
 RUN cd /opt && tar -xvzf android-sdk.tgz
 RUN cd /opt && rm -f android-sdk.tgz
 
-ENV PATH ${PATH}:${ANDROID_SDK_HOME}/tools:${ANDROID_SDK_HOME}/platform-tools:/opt/tools
+ENV PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:/opt/tools
 
 
 # ------------------------------------------------------
@@ -63,7 +60,7 @@ RUN echo y | android update sdk --no-ui --all --filter extra-google-google_play_
 COPY tools /opt/tools
 
 # Copy accepted android licenses
-COPY licenses ${ANDROID_SDK_HOME}/licenses
+COPY licenses ${ANDROID_HOME}/licenses
 
 # Update SDK
 RUN /opt/tools/android-accept-licenses.sh android update sdk --no-ui --obsolete --force
