@@ -46,11 +46,11 @@ RUN echo y | android update sdk --no-ui --all --filter platform-tools | grep 'pa
 
 # SDKs
 # Please keep these in descending order!
-RUN echo y | android update sdk --no-ui --all --filter android-26 | grep 'package installed'
+RUN echo y | android update sdk --no-ui --all --filter android-27 | grep 'package installed'
 
 # build tools
 # Please keep these in descending order!
-RUN echo y | android update sdk --no-ui --all --filter build-tools-26.0.2 | grep 'package installed'
+RUN echo y | android update sdk --no-ui --all --filter build-tools-27.0.0 | grep 'package installed'
 
 
 RUN echo y | android update sdk --no-ui --all --filter extra-android-m2repository | grep 'package installed'
