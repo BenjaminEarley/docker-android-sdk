@@ -1,7 +1,5 @@
 FROM ubuntu:17.04
 
-
-
 # ------------------------------------------------------
 # --- Install required tools
 
@@ -18,7 +16,6 @@ RUN apt-get install -y openjdk-8-jdk wget expect
 
 RUN useradd -u 1000 -M -s /bin/bash android
 RUN chown 1000 /opt
-
 
 USER android
 ENV ANDROID_SDK_HOME /opt/android-sdk-linux
